@@ -1,6 +1,7 @@
-const mergeClass = ({ isCompleteded = false }) => {
+// src/components/ToDoItem/mergeClass.js
+const mergeClass = (isCompleted = false) => {
   const styles = ["todo-item"];
-  if (isCompleteded) {
+  if (isCompleted) {
     styles.push("completed");
   }
   return styles.join(" ");
