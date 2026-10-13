@@ -28,4 +28,15 @@ describe("./SubHeading.js", () => {
       expect(queryByText("Para estudar")).toBeNull();
     });
   });
+  //   describe("findBy", () => {
+  //     /**
+  //      * findBy: Para elementos que vão aparecer DEPOIS de um tempo
+  //      * É assíncrono e "paciente": espera até 1 segundo (por padrão) para o elemento aparecer. Ideal para elementos que dependem de APIs ou animações.
+  //      */
+  //     test("deveria renderizar a descrição após 500ms", async () => {
+  //       const { findByText, queryByText } = render(<SubHeading></SubHeading>);
+  //       const description = await findByText("Só um exemplo de descrição ensinando sobre findBy para incentivar você!");
+  //       expect(description("Para estudar")).toBeInTheDocument();
+  //     });
+  //   });
 });
