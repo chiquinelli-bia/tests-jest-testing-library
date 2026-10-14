@@ -40,4 +40,23 @@ describe("./toDoItem.js", () => {
 
     expect(funcaoSimulandoSelectTodoForEdit).toHaveBeenCalledWith(item);
   });
+  test("deveria chamar a função removeTodo quando o botão de deletar for clicado", async () => {
+    const funcaoSimulandoRemoveTodo = jest.fn();
+    const item = {
+      description: "remover Jest",
+      createdAt: "2026-10-14T10:00:00Z",
+      completed: false,
+    };
+
+    const { getByRole } = render(
+      <TodoContext.Provider value={{ removeTodo: funcaoSimulandoRemoveTodo }}>
+        <ToDoItem item={item}></ToDoItem>
+      </TodoContext.Provider>,
+    );
+
+    const button = getByRole("button", { name: /delete/i });
+    await userEvent.click(button);
+
+    expect(funcaoSimulandoRemoveTodo).toHaveBeenCalledWith(item);
+  });
 });
