@@ -1,6 +1,6 @@
 import { render } from "@testing-library/react";
 import ToDoGroup from ".";
-import { TodoContext } from "../TodoProvider/TodoContext";
+import customRender from "../../helpers/renderCustom";
 
 describe("./ToDoGroup.js", () => {
   test("deveria renderizar o componente corretamente", () => {
@@ -30,11 +30,7 @@ describe("./ToDoGroup.js", () => {
         createdAt: "2025-08-27T10:00:00.000Z",
       },
     ];
-    const { getByText, queryAllByRole } = render(
-      <TodoContext.Provider value={{}}>
-        <ToDoGroup todos={items} heading="Teste" />
-      </TodoContext.Provider>,
-    );
+    const { getByText, queryAllByRole } = customRender(<ToDoGroup todos={items} heading="Teste" />);
 
     expect(queryAllByRole("listitem")).toHaveLength(2);
 

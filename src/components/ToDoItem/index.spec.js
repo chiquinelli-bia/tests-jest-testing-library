@@ -1,7 +1,6 @@
-import { render } from "@testing-library/react";
 import { ToDoItem } from ".";
-import { TodoContext } from "../TodoProvider/TodoContext";
 import userEvent from "@testing-library/user-event";
+import customRender from "../../helpers/renderCustom";
 
 describe("./toDoItem.js", () => {
   test("deveria renderizar o componente corretamente", () => {
@@ -11,11 +10,7 @@ describe("./toDoItem.js", () => {
       completed: false,
     };
 
-    const { getByText, getByRole } = render(
-      <TodoContext.Provider value={{}}>
-        <ToDoItem item={item}></ToDoItem>
-      </TodoContext.Provider>,
-    );
+    const { getByText, getByRole } = customRender(<ToDoItem item={item}></ToDoItem>);
 
     expect(getByText("Aprender Jest")).toBeInTheDocument();
     expect(getByText("14/10/2026")).toBeInTheDocument();
@@ -29,11 +24,9 @@ describe("./toDoItem.js", () => {
       completed: false,
     };
 
-    const { getByRole } = render(
-      <TodoContext.Provider value={{ selectTodoForEdit: funcaoSimulandoSelectTodoForEdit }}>
-        <ToDoItem item={item}></ToDoItem>
-      </TodoContext.Provider>,
-    );
+    const { getByRole } = customRender(<ToDoItem item={item}></ToDoItem>, {
+      selectTodoForEdit: funcaoSimulandoSelectTodoForEdit,
+    });
 
     const button = getByRole("button", { name: /edit/i });
     await userEvent.click(button);
@@ -48,11 +41,9 @@ describe("./toDoItem.js", () => {
       completed: false,
     };
 
-    const { getByRole } = render(
-      <TodoContext.Provider value={{ removeTodo: funcaoSimulandoRemoveTodo }}>
-        <ToDoItem item={item}></ToDoItem>
-      </TodoContext.Provider>,
-    );
+    const { getByRole } = customRender(<ToDoItem item={item}></ToDoItem>, {
+      removeTodo: funcaoSimulandoRemoveTodo,
+    });
 
     const button = getByRole("button", { name: /delete/i });
     await userEvent.click(button);

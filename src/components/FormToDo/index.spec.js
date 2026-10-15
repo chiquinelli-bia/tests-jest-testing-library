@@ -1,26 +1,20 @@
-import { render } from "@testing-library/react";
 import FormToDo from ".";
-import { TodoContext } from "../TodoProvider/TodoContext";
 import userEvent from "@testing-library/user-event";
+import customRender from "../../helpers/renderCustom";
 
 describe("./formToDo.js", () => {
   test("deveria renderizar o form corretamente", () => {
-    const { getByRole } = render(
-      <TodoContext.Provider value={{ selectedTodo: { description: "Um exemplo qualquer" } }}>
-        <FormToDo onSubmit={() => {}}></FormToDo>
-      </TodoContext.Provider>,
-    );
+    const { getByRole } = customRender(<FormToDo onSubmit={() => {}}></FormToDo>, {
+      selectedTodo: { description: "Um exemplo qualquer DE NOVO" },
+    });
+
     expect(getByRole("form")).toBeInTheDocument();
   });
   test("deveria renderizar a descrição do todo selecionado", async () => {
     const funcaoSimulandoSubmit = jest.fn();
-    const { getByRole } = render(
-      <TodoContext.Provider
-        value={{ selectedTodo: { description: "Um exemplo qualquer DE NOVO" } }}
-      >
-        <FormToDo onSubmit={funcaoSimulandoSubmit}></FormToDo>
-      </TodoContext.Provider>,
-    );
+    const { getByRole } = customRender(<FormToDo onSubmit={funcaoSimulandoSubmit}></FormToDo>, {
+      selectedTodo: { description: "Um exemplo qualquer DE NOVO" },
+    });
 
     const input = getByRole("textbox");
     await userEvent.clear(input);
