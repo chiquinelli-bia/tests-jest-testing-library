@@ -8,6 +8,12 @@ describe("./ToDoGroup.js", () => {
     expect(getByText("Teste")).toBeInTheDocument();
     expect(queryAllByRole("listitem")).toHaveLength(0);
   });
+  test("deveria renderizar a mensagem de lista vazia quando não tiver itens", () => {
+    const { getByText, queryAllByRole } = render(<ToDoGroup todos={[]} heading="Teste" />);
+
+    expect(getByText("Nenhum item encontrado")).toBeInTheDocument();
+    expect(queryAllByRole("listitem")).toHaveLength(0);
+  });
 
   test("deveria renderizar os itens do grupo corretamente", () => {
     const items = [
