@@ -20,7 +20,9 @@ export function ToDoCount() {
 
   return (
     <div className="todo-count-container">
-      <span className="todo-count">{count}</span>
+      <span className="todo-count" data-test="todo-count">
+        {count}
+      </span>
       <button
         disabled={isLoading}
         className="btn"
