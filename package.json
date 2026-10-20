@@ -10,7 +10,9 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "test": "jest"
+    "test": "jest",
+    "test:coverage": "jest --coverage",
+    "test:coverage-all": "jest --coverage --collectCoverageFrom='src/**/*.{js,jsx}'"
   },
   "dependencies": {
     "react": "^19.0.0",
