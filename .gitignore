@@ -2,6 +2,12 @@ __meus-docs__/*
 coverage/*
 db.json
 
+cypress/videos/
+cypress/screenshots/
+cypress/results/
+cypress/reports/
+cypress.env.json
+cypress/downloads/
 # Logs
 logs
 *.log
