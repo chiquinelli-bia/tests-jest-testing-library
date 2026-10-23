@@ -1,58 +1,82 @@
+# 🧪 Checklist App — Suite Completa de Testes Automáticos (Jest, RTL & Cypress)
+
 ![](thumbnail.png)
 
-# Testando um App de Checklist de Estudos
-
-Um projeto para quem já conhece as tecnologias mais importantes da web (HTML, CSS, JS) e o básico de ReactJS, mas deseja alcançar um novo nível de qualidade em suas aplicações, tornando-as confiáveis, robustas e manuteníveis mesmo com o passar do tempo. Ao longo do curso, criamos testes unitários, de componentes e E2E para uma aplicação React já desenvolvida e entendemos, na prática e com embasamento teórico, como os testes melhoram a qualidade de vida de todo o time.
-
-## 🔨 Funcionalidades do projeto
-
-- Criação de testes unitários
-- Construção de testes de integração/componente
-- Desenvolvimento de testes E2E (End-to-End)
-- Utilização de Mocks, Stubs e Spies
-- Visualização e análise de relatórios de coverage (cobertura de código)
-- Adição de NPM scripts e snippets para produtividade
-
-![](screen-capture.png)
-
-## ✔️ Técnicas e tecnologias utilizadas
-
-Os conhecimentos desenvolvidos ao longo do projeto abordam as seguintes técnicas e tecnologias:
-
-- **Pirâmide de Testes:** Metodologia que organiza e prioriza diferentes tipos de testes.
-- **Jest:** Framework de testes JavaScript para testes unitários e de integração.
-- **React Testing Library:** Ferramenta para testar componentes React focando no usuário.
-- **Cypress:** Ferramenta para escrever e executar testes E2E no navegador.
-- **Mocks, Stubs e Spies:** Simulam dependências para isolar o código em testes.
-- **Code Coverage:** Mede a porcentagem de código coberto por testes.
-- **Falso-Positivos:** Entendimento e prevenção de testes enganosos.
-- **npm scripts, entensões, snippets e muito mais:** Dicas práticas que vão ajudar você a ser um dev melhor e mais produtivo.
-
-## 🛠️ Como rodar o projeto
-
-Após baixar o projeto, siga os passos abaixo para executar localmente:
-
-1. Certifique-se de que você já tem Node.js instalado ([guia oficial](https://nodejs.org/en/download/)).
-2. No terminal, navegue até a pasta do projeto e instale as dependências:
-
-```bash
-npm install
-```
-
-3. Execute o projeto:
-
-```bash
-npm start
-```
-
-4. Acesse no navegador: [http://localhost:5173](http://localhost:5173) (Vite).
-
-## 📚 Mais informações do curso
-
-Gostou da ideia e quer aprender com as aula? O passo a passo completo, desde a instalação até a criação de todos os testes, faz parte do curso da carreira React da Alura, com foco em experiência real de desenvolvimento, boas práticas e conceitos importantes para os devs.
-
-Se quiser experimentar, explore o código e aumente a cobertura de testes do projeto utilizando tudo que aprendeu!
+Aplicação React focada em garantir alta qualidade de software, confiabilidade e facilidade de manutenção por meio de uma estratégia completa de testes automatizados que cobre desde funções utilitárias isoladas até fluxos vitais End-to-End no navegador.
 
 ---
 
-Aguardo você no próximo curso ou no [Manual do Front](https://www.youtube.com/@manualdofront), até a próxima 🚀
+## 🎯 Destaques do Projeto & Engenharia de Testes
+
+O diferencial deste repositório está na **cobertura abrangente em todas as camadas da Pirâmide de Testes**, adotando boas práticas e abstrações de teste para manutenibilidade:
+
+- **Arquitetura & Custom Render:** Criação de um `customRender` que engloba contextos globais (`TodoContext`), eliminando boilerplate e simplificando asserções nos testes de componentes.
+- **Simulação Realista do Usuário:** Utilização de `@testing-library/user-event` para simular interações reais de digitação e submissão de formulários, associado a _spies_ e _mocks_ de funções do contexto.
+- **Testes Orientados a Dados (Data-Driven):** Testes unitários para funções utilitárias puras (como `mergeClass`), cobrindo múltiplas variações condicionais de estilo.
+- **Asserções Assíncronas e Casos Limite:** Uso estratégico de consultas assíncronas (`findBy`, `queryByText`) para validar estados de carregamento, respostas da API, seletores do React Context e renders de lista vazia.
+- **E2E Browser Automation (Cypress):** Testes de ponta a ponta configurados com `baseUrl` e _Cypress Studio_, validando o ciclo completo do CRUD (criação, edição e exclusão de tarefas no DOM).
+- **Métricas de Cobertura & DX:** Scripts customizados para geração de relatórios de _code coverage_, linting integrado para Jest e ambiente Babel pré-configurado.
+
+![](screen-capture.png)
+
+---
+
+## 🛠️ Tecnologias & Ferramentas
+
+- **Core:** React, Vite, JavaScript (ES6+), React Context API
+- **Unit & Integration Testing:** Jest, React Testing Library (RTL), `@testing-library/user-event`
+- **End-to-End (E2E):** Cypress
+- **Tooling & DX:** Babel, ESLint, Coverage Reports
+
+---
+
+## 🧪 Estrutura e Escopo dos Testes
+
+| Camada                            | Ferramenta      | Escopo / Funcionalidades Testadas                                                                                |
+| :-------------------------------- | :-------------- | :--------------------------------------------------------------------------------------------------------------- |
+| **Unitário (Utils & Components)** | Jest + RTL      | Funções puras (`mergeClass`), botões de ação (`FabButton`), cabeçalhos e estados de renderização inicial.        |
+| **Integração (Context & Forms)**  | RTL + userEvent | Fluxos do `FormToDo`, componentes `ToDoGroup`, `ToDoItem`, `ToDoCount` e integração direta com o `TodoProvider`. |
+| **End-to-End (E2E)**              | Cypress         | Fluxos completos de criação, edição e remoção de tarefas em ambiente de navegador real.                          |
+
+---
+
+## 🚀 Como Executar o Projeto Localmente
+
+### Pré-requisitos
+
+- **Node.js** (v18+ recomendado)
+- **npm** ou **yarn**
+
+### Passo a Passo
+
+1. **Clone e instale as dependências:**
+   ```bash
+   git clone [https://github.com/chiquinelli-bia/tests-jest-testing-library.git](https://github.com/chiquinelli-bia/tests-jest-testing-library.git)
+   cd nome-do-repositorio
+   npm install
+   ```
+2. **Execute a aplicação:**
+
+   ```bash
+    npm start
+   ```
+
+3. Execute a suíte de testes:
+
+- Testes Unitários / Integração (Jest):
+
+  ```bash
+  npm test
+  ```
+
+- Relatório de Cobertura (Coverage):
+
+  ```bash
+  npm run test:coverage
+  ```
+
+- Testes End-to-End (Cypress):
+
+  ```bash
+  npx cypress open
+  ```
