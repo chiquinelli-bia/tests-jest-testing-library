@@ -9,8 +9,12 @@ export const TodoProvider = ({ children }) => {
 
   useEffect(() => {
     const fetchTodos = async () => {
-      const todosFromApi = await getTodos();
-      setTodos(todosFromApi);
+      try {
+        const todosFromApi = await getTodos();
+        setTodos(todosFromApi);
+      } catch (error) {
+        console.error("Erro ao carregar tarefas:", error);
+      }
     };
 
     fetchTodos();
@@ -47,12 +51,12 @@ export const TodoProvider = ({ children }) => {
     await deleteTodo(todo.id);
   };
 
-  const toggleItemCompleted = (todo) => {
-    setTodos((oldState) =>
-      oldState.map((item) =>
-        item.id === todo.id ? { ...item, completed: !item.completed } : item,
-      ),
-    );
+  const toggleItemCompleted = async (todo) => {
+    const updatedTodo = { ...todo, completed: !todo.completed };
+
+    setTodos((oldState) => oldState.map((item) => (item.id === todo.id ? updatedTodo : item)));
+
+    await updateTodo(updatedTodo);
   };
 
   const openTodoFormModal = () => {
